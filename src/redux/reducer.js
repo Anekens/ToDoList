@@ -106,6 +106,7 @@ const reducer = (state = initialState, action) => {
 };
 
 const updateTaskAC = (taskId, obj, todolistId) => {
+
     return {type: UPDATE_TASK, taskId, obj, todolistId};
 };
 const updateTodolistAC = (todolistId, newTitle) => {

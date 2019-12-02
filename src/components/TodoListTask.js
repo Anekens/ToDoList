@@ -5,12 +5,12 @@ import SelectPriority from "./SelectPriority";
 class TodoListTask extends React.Component {
 
     onIsDoneChanged = (e) => {
-        let status = e.currentTarget.checked ? 2 : 0;
-        this.props.changeStatus(this.props.task.id, status);
+        this.props.changeStatus(this.props.task.id, e.currentTarget.checked);
     };
 
     onTitleChanged = (e) => {
-        this.props.changeTitle(this.props.task.id, e.currentTarget.value);
+        let newTitle = e.currentTarget.value;
+        this.setState({title: newTitle})
     };
 
     onPriorityChanged = (priority) => {
@@ -19,7 +19,8 @@ class TodoListTask extends React.Component {
 
     state = {
         editMode: false,
-        editModePriority: false
+        editModePriority: false,
+        title: this.props.task.title
     };
 
     activateEditMode = () => {
@@ -28,7 +29,7 @@ class TodoListTask extends React.Component {
 
     deactivateEditMode = () => {
         this.setState({editMode: false});
-        this.props.changeTitle(this.props.task.id, this.props.task.title);
+        this.props.changeTitle(this.props.task.id, this.state.title);
     };
 
     activateEditModePriority = () => {
@@ -50,7 +51,7 @@ class TodoListTask extends React.Component {
         }
     };
     render = () => {
-        let containerCssClass = this.props.task.isDone ? "todoList-task done" : "todoList-task";
+        let containerCssClass = this.props.task.completed ? "todoList-task done" : "todoList-task";
         let priorityTitle = "";
         switch (this.props.task.priority) {
             case 0:
@@ -71,7 +72,7 @@ class TodoListTask extends React.Component {
         }
         return (
             <div className={containerCssClass}>
-                <input type="checkbox" checked={this.props.task.status === 2}
+                <input type="checkbox" checked={this.props.task.completed === true}
                        onChange={this.onIsDoneChanged}/>
                 {
                     this.state.editMode
@@ -80,9 +81,9 @@ class TodoListTask extends React.Component {
                                      this.onTitleChanged(e)
                                  }}
                                  autoFocus={true}
-                                 value={this.props.task.title}
+                                 value={this.state.title}
                                  onKeyPress={this.onKeyPress}/>
-                        : <span onClick={this.activateEditMode}>{this.props.task.title}</span>
+                        : <span onClick={this.activateEditMode}>{this.state.title}</span>
                 }, priority: {
                 this.state.editModePriority
                     ? <SelectPriority deactivateEditModePriority={this.deactivateEditModePriority}

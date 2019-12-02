@@ -58,6 +58,7 @@ class TodoList extends React.Component {
 
     render = () => {
         let {tasks = []} = this.props;
+
         return (
             <div className="todoList">
                 <div className="todoList-header">
@@ -76,10 +77,10 @@ class TodoList extends React.Component {
                                        return true;
                                    }
                                    if (this.state.filterValue === "Active") {
-                                       return t.isDone === false;
+                                       return t.completed === false;
                                    }
                                    if (this.state.filterValue === "Completed") {
-                                       return t.isDone === true;
+                                       return t.completed === true;
                                    }
                                })}/>
                 <TodoListFooter changeFilter={this.changeFilter} filterValue={this.state.filterValue}/>

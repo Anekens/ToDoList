@@ -20,6 +20,7 @@ export const api = {
         return instance.get("")
     },
     updateTask(task) {
+
         return instance.put('tasks', task)
     },
     deleteTodolist(id) {

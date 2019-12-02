@@ -18,6 +18,13 @@ class SelectPriority extends React.Component {
         this.props.onPriorityChanged(selectedOption.value);
     };
 
+    onKeyPress = (e) => {
+        if (e.key === "Enter") {
+            this.props.deactivateEditModePriority();
+        }
+    };
+
+
     render() {
         const {selectedOption} = this.state;
 
@@ -28,7 +35,8 @@ class SelectPriority extends React.Component {
                 options={options}
                 onBlur={this.props.deactivateEditModePriority}
                 autoFocus={true}
-                placeholder={this.props.priorityTitle}/>
+                placeholder={this.props.priorityTitle}
+                onKeyDown={this.onKeyPress}/>
         );
     }
 }
