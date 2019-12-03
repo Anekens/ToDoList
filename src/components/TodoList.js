@@ -37,8 +37,8 @@ class TodoList extends React.Component {
         this.props.updateTodolistTC(this.props.id, newTitle);
     };
 
-    changeStatus = (taskId, status) => {
-        this.changeTask(taskId, {status});
+    changeStatus = (taskId, completed) => {
+        this.changeTask(taskId, {completed});
     };
 
     changeTitle = (taskId, title) => {
@@ -46,6 +46,16 @@ class TodoList extends React.Component {
     };
     changePriority = (taskId, priority) => {
         this.changeTask(taskId, {priority});
+    };
+    changeDescription = (taskId, description) => {
+        this.changeTask(taskId, {description});
+    };
+
+    changeStartDate = (taskId, startDate) => {
+        this.changeTask(taskId, {startDate});
+    };
+    changeDeadline = (taskId, deadline) => {
+        this.changeTask(taskId, {deadline});
     };
 
     deleteTodolist = () => {
@@ -58,20 +68,23 @@ class TodoList extends React.Component {
 
     render = () => {
         let {tasks = []} = this.props;
-
         return (
             <div className="todoList">
                 <div className="todoList-header">
                     <TodoListTitle title={this.props.title}
                                    onDelete={this.deleteTodolist}
                                    changeTodolistTitle={this.changeTodolistTitle}
-                                   id={this.props.id}/>
+                                   id={this.props.id}
+                                   addedDate={this.props.addedDate}/>
                     <AddNewItemForm addItem={this.addTask}/>
                 </div>
                 <TodoListTasks changeStatus={this.changeStatus}
                                changeTitle={this.changeTitle}
                                deleteTask={this.deleteTask}
                                changePriority={this.changePriority}
+                               changeDescription={this.changeDescription}
+                               changeStartDate={this.changeStartDate}
+                               changeDeadline={this.changeDeadline}
                                tasks={tasks.filter(t => {
                                    if (this.state.filterValue === "All") {
                                        return true;

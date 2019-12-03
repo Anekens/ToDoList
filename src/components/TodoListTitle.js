@@ -23,7 +23,11 @@ export const TodoListTitle = (props) => {
         setNewTitle(e.currentTarget.value);
     };
 
+    const dateFormat = require('dateformat');
+    const now = new Date(props.addedDate);
+
     return (
+        <div>
         <h3 className="todoList-header__title">
             {editMode
                 ? <input onBlur={deactivateEditMode}
@@ -33,9 +37,13 @@ export const TodoListTitle = (props) => {
                          autoFocus={true}
                          value={newTitle}
                          onKeyPress={onKeyPress}/>
-                : <span onClick={activateEditMode}>{props.title}</span>}
+                : <span onClick={activateEditMode}>
+                    {props.title} &nbsp;
+            </span>}
             <button onClick={props.onDelete}>X</button>
         </h3>
+            <span>{dateFormat(now,"H:MM/yyyy-mm-dd")}</span>
+        </div>
     );
 };
 

@@ -27,9 +27,12 @@ const reducer = (state = initialState, action) => {
                 })
             };
         case SET_TODOLISTS:
+
             return {
                 ...state,
-                todolists: action.todolists.map(tl => ({...tl, tasks: []}))
+                todolists: action.todolists.map(tl => {
+                    return {...tl, tasks: [] }
+                })
             };
         case ADD_TODOLIST:
             return {

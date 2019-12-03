@@ -21,7 +21,8 @@ class App extends React.Component {
                 key={tl.id}
                 id={tl.id}
                 title={tl.title}
-                tasks={tl.tasks}/>);
+                tasks={tl.tasks}
+                addedDate={tl.addedDate}/>);
         return (
             <>
                 <div>
