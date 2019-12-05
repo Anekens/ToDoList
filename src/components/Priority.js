@@ -4,6 +4,22 @@ import SelectPriority from "./SelectPriority";
 
 
 class Priority extends React.Component {
+
+    onPriorityChanged = (priority) => {
+        this.props.changePriority(this.props.id, priority)
+    };
+
+    state = {
+        editMode: false
+    };
+
+    activateEditMode = () => {
+        this.setState({editMode: true});
+    };
+
+    deactivateEditMode = () => {
+        this.setState({editMode: false});
+    };
     render = () => {
         let priorityTitle = "";
         switch (this.props.priority) {
@@ -28,11 +44,11 @@ class Priority extends React.Component {
             <div className={""}>
                 <span className={'heading'}>Priority: </span>
                 {
-                    this.props.editMode
-                        ? <SelectPriority deactivateEditMode={this.props.deactivateEditMode}
-                                          onPriorityChanged={this.props.onPriorityChanged}
+                    this.state.editMode
+                        ? <SelectPriority deactivateEditMode={this.deactivateEditMode}
+                                          onPriorityChanged={this.onPriorityChanged}
                                           priorityTitle={priorityTitle}/>
-                        : <span onClick={this.props.activateEditMode}>{priorityTitle}</span>
+                        : <span onClick={this.activateEditMode}>{priorityTitle}</span>
                 }.&nbsp;
             </div>
         );

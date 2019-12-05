@@ -1,40 +1,45 @@
-import React from 'react';
+import React, {useState} from 'react';
 import '../App.css';
 
 
-class DateForm extends React.Component {
-    render = () => {
+export const DateForm = (props) => {
+    const [editMode, setEditMode] = useState(false);
 
-        const setDate = this.props.date
-            ? this.props.date
-            : `Set ${this.props.title}`;
-        const startValue = this.props.date
-            ? this.props.date
-            : this.props.addedDate;
-        const dateFormat = require('dateformat');
-        const value = new Date(startValue);
-        const min = new Date(this.props.addedDate);
+    const activateEditMode = () => {
+        setEditMode(true);
+    };
+    const onDateChanged = (e) => {
+        setEditMode(false);
+        props.changeDate(props.id, e.currentTarget.value);
+    };
 
-        return (
-            <div className={""}>
-                <span className={'heading'}>{this.props.title}:&nbsp;</span>
-                {
-                    this.props.editMode
-                        ? <input type="date"
-                                 value={dateFormat(value, "yyyy-mm-dd")}
-                                 min={dateFormat(min, "yyyy-mm-dd")} max="2021-12-31"
-                                 autoFocus={true}
-                                 onBlur={this.props.onStart}
-                                 onChange={(e) => {
-                                     this.props.onStart(e)
-                                 }}/>
-                        : <span onClick={this.props.activateEditMode}>
+    const setDate = props.date
+        ? props.date
+        : `Set ${props.title}`;
+    const startValue = props.date
+        ? props.date
+        : props.addedDate;
+    const dateFormat = require('dateformat');
+    const value = new Date(startValue);
+    const min = new Date(props.addedDate);
+
+    return (
+        <div className={""}>
+            <span className={'heading'}>{props.title}:&nbsp;</span>
+            {
+                editMode
+                    ? <input type="date"
+                             value={dateFormat(value, "yyyy-mm-dd")}
+                             min={dateFormat(min, "yyyy-mm-dd")} max="2021-12-31"
+                             autoFocus={true}
+                             onBlur={onDateChanged}
+                             onChange={onDateChanged}/>
+                    : <span onClick={activateEditMode}>
                         {setDate}.&nbsp;</span>
-                }
-            </div>
-        );
-    }
-}
+            }
+        </div>
+    );
+};
 
 export default DateForm;
 

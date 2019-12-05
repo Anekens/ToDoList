@@ -37,7 +37,8 @@ class SelectPriority extends React.Component {
                 onBlur={this.props.deactivateEditMode}
                 autoFocus={true}
                 placeholder={this.props.priorityTitle}
-                onKeyDown={this.onKeyPress}/>
+                onKeyDown={this.onKeyPress}
+                className={null}/>
         );
     }
 }
