@@ -1,6 +1,10 @@
 import React from 'react';
 import '../App.css';
-import SelectPriority from "./SelectPriority";
+import DateForm from "./DateForm";
+import Priority from "./Priority";
+import TaskDescription from "./TaskDescription";
+import TaskTitle from "./TaskTitle";
+import AddedDateForm from "./AddedDateForm";
 
 
 class TodoListTask extends React.Component {
@@ -28,9 +32,20 @@ class TodoListTask extends React.Component {
         this.props.changeStartDate(this.props.task.id, e.currentTarget.value);
     };
 
-    onStartDeadline = (e) => {
+    onDeadlineChanged = (e) => {
         this.setState({editModeDeadline: false});
         this.props.changeDeadline(this.props.task.id, e.currentTarget.value);
+    };
+
+    onDeleteTask = () => {
+        this.props.deleteTask(this.props.task.id);
+    };
+
+    onKeyPress = (e) => {
+        if (e.key === "Enter") {
+            this.deactivateEditMode();
+            this.deactivateEditModeDescription();
+        }
     };
 
 
@@ -78,119 +93,59 @@ class TodoListTask extends React.Component {
         this.setState({editModeDeadline: true});
     };
 
-    onDeleteTask = () => {
-        this.props.deleteTask(this.props.task.id);
-    };
-
-    onKeyPress = (e) => {
-        if (e.key === "Enter") {
-            this.deactivateEditMode();
-            this.deactivateEditModeDescription();
-        }
-    };
     render = () => {
-        debugger
-        let containerCssClass = this.props.task.completed ? "todoList-task done" : "todoList-task";
-        let priorityTitle = "";
-        let setDescription = this.props.task.description
-            ? this.props.task.description
-            : "set description";
-        let setStartDate = this.props.task.startDate
-            ? this.props.task.startDate
-            : "set start date";
-        let setDeadline = this.props.task.deadline
-            ? this.props.task.deadline
-            : "set deadline";
 
-        const dateFormat = require('dateformat');
-        const now = new Date(this.props.task.addedDate);
-
-        switch (this.props.task.priority) {
-            case 0:
-                priorityTitle = "Low";
-                break;
-            case 1:
-                priorityTitle = "Middle";
-                break;
-            case 2:
-                priorityTitle = "High";
-                break;
-            case 3:
-                priorityTitle = "Urgently";
-                break;
-            case 4:
-                priorityTitle = "Later";
-                break;
-        }
+        const containerCssClass = this.props.task.completed
+            ? "todoList-task done"
+            : "todoList-task";
 
         return (
-
             <div className={containerCssClass}>
-                <input type="checkbox" checked={this.props.task.completed === true}
-                       onChange={this.onIsDoneChanged}/>
-                <span className={'heading'}>Title:&nbsp;</span>{
-                this.state.editMode
-                    ? <input onBlur={this.deactivateEditMode}
-                             onChange={(e) => {
-                                 this.onTitleChanged(e)
-                             }}
-                             autoFocus={true}
-                             value={this.state.title}
-                             onKeyPress={this.onKeyPress}
-                             placeholder={'Set title'}/>
-                    : <span onClick={this.activateEditMode}>{this.state.title}.&nbsp;</span>
-            }
-                <span className={'heading'}>Description:&nbsp;</span>
-                {
-                    this.state.editModeDescription
-                        ? <input onBlur={this.deactivateEditModeDescription}
-                                 onChange={(e) => {
-                                     this.onDescriptionChanged(e)
-                                 }}
-                                 autoFocus={true}
+                <div>
+                    <input type="checkbox" checked={this.props.task.completed === true}
+                           onChange={this.onIsDoneChanged}/>
+                </div>
+
+                <TaskTitle title={'Title'}
+                           editMode={this.state.editMode}
+                           deactivateEditMode={this.deactivateEditMode}
+                           onTitleChanged={this.onTitleChanged}
+                           value={this.state.title}
+                           onKeyPress={this.onKeyPress}
+                           activateEditMode={this.activateEditMode}/>
+
+                <TaskDescription description={this.props.task.description}
+                                 title={'Description'}
+                                 editMode={this.state.editModeDescription}
+                                 deactivateEditMode={this.deactivateEditModeDescription}
+                                 onDescriptionChanged={this.onDescriptionChanged}
                                  value={this.state.description}
                                  onKeyPress={this.onKeyPress}
-                                 placeholder={'Set description'}/>
-                        : <span onClick={this.activateEditModeDescription}
-                                placeholder={'Set description'}>
-                           {setDescription}.&nbsp;
-                    </span>
-                } <span className={'heading'}>Priority: </span>{
-                this.state.editModePriority
-                    ? <SelectPriority deactivateEditModePriority={this.deactivateEditModePriority}
-                                      onPriorityChanged={this.onPriorityChanged}
-                                      priorityTitle={priorityTitle}/>
-                    : <span onClick={this.activateEditModePriority}>{priorityTitle}</span>
-            }.&nbsp;
-                <span className={'heading'}>
-                    Added date:&nbsp;
-                </span>{dateFormat(now, "H:MM/yyyy-mm-dd")}.&nbsp;
+                                 activateEditMode={this.activateEditModeDescription}/>
 
-                <span className={'heading'}>Start date:&nbsp;</span>
-                {this.state.editModeStartDate
-                    ? <input type="date"
-                             value={dateFormat(now, "yyyy-mm-dd")}
-                             min={dateFormat()} max="2021-12-31"
-                             autoFocus={true}
-                             onChange={(e) => {
-                                 this.onStartDateChanged(e)
-                             }}/>
-                    : <span onClick={this.activateEditModeStartDate}>
-                        {setStartDate}.&nbsp;</span>
-                }
-                <span className={'heading'}>Deadline:&nbsp;</span>
-                {this.state.editModeDeadline
-                    ? <input type="date"
-                             value={dateFormat(now, "yyyy-mm-dd")}
-                             min={dateFormat()} max="2021-12-31"
-                             autoFocus={true}
-                             onChange={(e) => {
-                                 this.onStartDeadline(e)
-                             }}/>
-                    : <span onClick={this.activateEditModeDeadline}>
-                        {setDeadline}.&nbsp;</span>
-                }
-                <button onClick={this.onDeleteTask}>X</button>
+                <Priority priority={this.props.task.priority}
+                          deactivateEditMode={this.deactivateEditModePriority}
+                          onPriorityChanged={this.onPriorityChanged}
+                          activateEditMode={this.activateEditModePriority}
+                          editMode={this.state.editModePriority}/>
+
+                <AddedDateForm addedDate={this.props.task.addedDate}/>
+
+                <DateForm onStart={this.onStartDateChanged}
+                          activateEditMode={this.activateEditModeStartDate}
+                          addedDate={this.props.task.addedDate}
+                          editMode={this.state.editModeStartDate}
+                          date={this.props.task.startDate}
+                          title={'Start date'}/>
+                <DateForm onStart={this.onDeadlineChanged}
+                          activateEditMode={this.activateEditModeDeadline}
+                          addedDate={this.props.task.addedDate}
+                          editMode={this.state.editModeDeadline}
+                          date={this.props.task.deadline}
+                          title={'Deadline'}/>
+                <div>
+                    <button onClick={this.onDeleteTask}>X</button>
+                </div>
             </div>
         );
     }

@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import '../App.css';
+import AddedDateForm from "./AddedDateForm";
 
 export const TodoListTitle = (props) => {
     const [editMode, setEditMode] = useState(false);
@@ -23,26 +24,23 @@ export const TodoListTitle = (props) => {
         setNewTitle(e.currentTarget.value);
     };
 
-    const dateFormat = require('dateformat');
-    const now = new Date(props.addedDate);
-
     return (
         <div>
-        <h3 className="todoList-header__title">
-            {editMode
-                ? <input onBlur={deactivateEditMode}
-                         onChange={(e) => {
-                             onTitleChanged(e)
-                         }}
-                         autoFocus={true}
-                         value={newTitle}
-                         onKeyPress={onKeyPress}/>
-                : <span onClick={activateEditMode}>
+            <h3 className="todoList-header__title">
+                {editMode
+                    ? <input onBlur={deactivateEditMode}
+                             onChange={(e) => {
+                                 onTitleChanged(e)
+                             }}
+                             autoFocus={true}
+                             value={newTitle}
+                             onKeyPress={onKeyPress}/>
+                    : <span onClick={activateEditMode}>
                     {props.title} &nbsp;
             </span>}
-            <button onClick={props.onDelete}>X</button>
-        </h3>
-            <span>{dateFormat(now,"H:MM/yyyy-mm-dd")}</span>
+                <button onClick={props.onDelete}>X</button>
+            </h3>
+            <AddedDateForm addedDate={props.addedDate}/>
         </div>
     );
 };
