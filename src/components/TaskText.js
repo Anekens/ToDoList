@@ -23,9 +23,7 @@ export const TaskText = (props) => {
     const onTitleChanged = (e) => {
         setNewTitle(e.currentTarget.value);
     };
-    const title = props.title
-        ? newTitle
-        : props.placeholder;
+
 
     return (
         <div className={""}>
@@ -39,7 +37,7 @@ export const TaskText = (props) => {
                              onKeyPress={onKeyPress}
                              placeholder={props.placeholder}/>
                     : <span onClick={activateEditMode}
-                            placeholder={props.placeholder}>{title}.&nbsp;</span>
+                            placeholder={props.placeholder}>{!props.title ? 'enter task' : props.title}.&nbsp;</span>
             }
         </div>
     );

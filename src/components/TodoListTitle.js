@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import '../App.css';
-import AddedDateForm from "./AddedDateForm";
+import AddDateForm from "./AddDateForm";
 
 export const TodoListTitle = (props) => {
     const [editMode, setEditMode] = useState(false);
@@ -40,7 +40,7 @@ export const TodoListTitle = (props) => {
             </span>}
                 <button onClick={props.onDelete}>X</button>
             </h3>
-            <AddedDateForm addedDate={props.addedDate}/>
+            <AddDateForm addedDate={props.addedDate}/>
         </div>
     );
 };

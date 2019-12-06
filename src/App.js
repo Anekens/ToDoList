@@ -1,40 +1,48 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './App.css';
 import TodoList from "./components/TodoList";
 import AddNewItemForm from "./components/AddNewItemForm";
 import {connect} from "react-redux";
 import {addTodolistTC, setTodolistsTC} from "./redux/reducer";
 
-class App extends React.Component {
-    componentDidMount() {
-        this.props.setTodolistsTC();
-    }
+export const App = (props) => {
 
-    addTodoList = (title) => {
-        this.props.addTodolistTC(title);
+    useEffect(() => {
+        const fetchData = async () => {
+            await props.setTodolistsTC();
+        };
+        fetchData();
+    }, []);
+
+    const addTodoList = (title) => {
+        props.addTodolistTC(title);
     };
 
-    render = () => {
-        const todolists = this.props
-            .todolists
-            .map(tl => <TodoList
-                key={tl.id}
-                id={tl.id}
-                title={tl.title}
-                tasks={tl.tasks}
-                addedDate={tl.addedDate}/>);
-        return (
-            <>
+    const todolists = props
+        .todolists
+        .map(tl => <TodoList
+            key={tl.id}
+            id={tl.id}
+            title={tl.title}
+            tasks={tl.tasks}
+            addedDate={tl.addedDate}/>);
+    return (
+        <>
+            <div className={'header'}>
                 <div>
-                    <AddNewItemForm addItem={this.addTodoList}/>
+                    <AddNewItemForm addItem={addTodoList}
+                                    placeholder={'Add new to do list'}/>
                 </div>
-                <div className="App">
-                    {todolists}
+                <div>
+                    <span className={'title'}>to do list app</span>
                 </div>
-            </>
-        );
-    }
-}
+            </div>
+            <div className="App">
+                {todolists}
+            </div>
+        </>
+    );
+};
 
 const mapStateToProps = (state) => {
     return {

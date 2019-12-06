@@ -1,59 +1,69 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import '../App.css';
-import SelectPriority from "./SelectPriority";
 
+export const Priority = (props) => {
+    const [editMode, setEditMode] = useState(false);
 
-class Priority extends React.Component {
-
-    onPriorityChanged = (priority) => {
-        this.props.changePriority(this.props.id, priority)
+    const onPriorityChanged = (e) => {
+        props.changePriority(props.id, e.currentTarget.value);
+        deactivateEditMode();
     };
 
-    state = {
-        editMode: false
+    const activateEditMode = () => {
+        setEditMode(true);
     };
 
-    activateEditMode = () => {
-        this.setState({editMode: true});
+    const deactivateEditMode = () => {
+        setEditMode(false);
     };
 
-    deactivateEditMode = () => {
-        this.setState({editMode: false});
-    };
-    render = () => {
-        let priorityTitle = "";
-        switch (this.props.priority) {
-            case 0:
-                priorityTitle = "Low";
-                break;
-            case 1:
-                priorityTitle = "Middle";
-                break;
-            case 2:
-                priorityTitle = "High";
-                break;
-            case 3:
-                priorityTitle = "Urgently";
-                break;
-            case 4:
-                priorityTitle = "Later";
-                break;
+    const onKeyPress = (e) => {
+        if (e.key === "Enter") {
+            deactivateEditMode();
         }
+    };
 
-        return (
-            <div className={""}>
-                <span className={'heading'}>Priority: </span>
-                {
-                    this.state.editMode
-                        ? <SelectPriority deactivateEditMode={this.deactivateEditMode}
-                                          onPriorityChanged={this.onPriorityChanged}
-                                          priorityTitle={priorityTitle}/>
-                        : <span onClick={this.activateEditMode}>{priorityTitle}</span>
-                }.&nbsp;
-            </div>
-        );
+    let priorityTitle = "";
+
+    switch (props.priority) {
+        case 0:
+            priorityTitle = "Low";
+            break;
+        case 1:
+            priorityTitle = "Middle";
+            break;
+        case 2:
+            priorityTitle = "High";
+            break;
+        case 3:
+            priorityTitle = "Urgently";
+            break;
+        case 4:
+            priorityTitle = "Later";
+            break;
     }
-}
+
+    let select = props.priority;
+    return (
+        <div className={""}>
+            <span className={'heading'}>Priority: </span>
+            {
+                editMode
+                    ? <select autoFocus={true}
+                              onKeyDown={onKeyPress}
+                              onChange={onPriorityChanged}
+                              onBlur={deactivateEditMode}>
+                        <option selected={select === 0} value="0">Low</option>
+                        <option selected={select === 1} value="1">Middle</option>
+                        <option selected={select === 2} value="2">High</option>
+                        <option selected={select === 3} value="3">Urgently</option>
+                        <option selected={select === 4} value="4">Later</option>
+                    </select>
+                    : <span onClick={activateEditMode}>{priorityTitle}</span>
+            }.&nbsp;
+        </div>
+    );
+};
 
 export default Priority;
 

@@ -13,15 +13,20 @@ export const DateForm = (props) => {
         props.changeDate(props.id, e.currentTarget.value);
     };
 
-    const setDate = props.date
-        ? props.date
-        : `Set ${props.title}`;
-    const startValue = props.date
+    let dateFormat = require('dateformat');
+
+    let now = new Date(props.date);
+
+    let setDate = props.date
+        ? dateFormat(now, "dd-mm-yyyy")
+        : `set ${props.title}`;
+
+    let startValue = props.date
         ? props.date
         : props.addedDate;
-    const dateFormat = require('dateformat');
-    const value = new Date(startValue);
-    const min = new Date(props.addedDate);
+
+    let min = new Date(props.addedDate);
+    let value = new Date(startValue);
 
     return (
         <div className={""}>

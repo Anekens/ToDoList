@@ -3,7 +3,7 @@ import '../App.css';
 import DateForm from "./DateForm";
 import Priority from "./Priority";
 import TaskText from "./TaskText";
-import AddedDateForm from "./AddedDateForm";
+import AddDateForm from "./AddDateForm";
 
 export const TodoListTask = (props) => {
 
@@ -15,7 +15,7 @@ export const TodoListTask = (props) => {
         props.deleteTask(props.task.id);
     };
 
-    const containerCssClass = props.task.completed ? "todoList-task done" : "todoList-task";
+    let containerCssClass = props.task.completed ? "todoList-task done" : "todoList-task";
 
     return (
         <div className={containerCssClass}>
@@ -36,17 +36,17 @@ export const TodoListTask = (props) => {
             <Priority priority={props.task.priority}
                       changePriority={props.changePriority}
                       id={props.task.id}/>
-            <AddedDateForm addedDate={props.task.addedDate}/>
+            <AddDateForm addedDate={props.task.addedDate}/>
             <DateForm changeDate={props.changeStartDate}
                       id={props.task.id}
                       addedDate={props.task.addedDate}
                       date={props.task.startDate}
-                      title={'Start date'}/>
+                      title={'start date'}/>
             <DateForm changeDate={props.changeDeadline}
                       id={props.task.id}
                       addedDate={props.task.addedDate}
                       date={props.task.deadline}
-                      title={'Deadline'}/>
+                      title={'deadline'}/>
             <div>
                 <button onClick={onDeleteTask}>X</button>
             </div>
