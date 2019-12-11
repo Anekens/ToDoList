@@ -9,17 +9,17 @@
 }
 .newForm input {
     width: 250px;
-    height: 50px;
+    height: 35px;
     border: none;
 }
 
 input {
-    font-size: 1.8em;
+    font-size: 1.3em;
 }
 
 .newForm input:focus + label {
-    top: -73px;
-    font-size: 1.25em;
+    top: -56px;
+    font-size: 1.1em;
     transition: all .3s;
 }
 
@@ -33,15 +33,15 @@ input {
     display: block;
     position: relative;
     left: 10px;
-    top: -40px;
-    font-size: 1.6em;
+    top: -33px;
+    font-size: 1.3em;
     cursor: text;
     color: blue;
     transition: all .3s;
 }
 
 .containerBtn {
-    /*margin-top: 5px;*/
+    margin-top: 5px;
     margin-left: 20px;
 }
 
