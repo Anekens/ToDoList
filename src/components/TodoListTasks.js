@@ -1,10 +1,9 @@
 import React from 'react';
-import '../App.css';
+import style from '../App.module.css';
 import TodoListTask from "./TodoListTask";
 
 export const TodoListTasks = (props) => {
     const tasksElements = props.tasks.map(task => {
-        debugger
             return <TodoListTask task={task}
                                  changeStatus={props.changeStatus}
                                  changeTitle={props.changeTitle}
@@ -18,7 +17,7 @@ export const TodoListTasks = (props) => {
         })
     ;
     return (
-        <div className="todoList-tasks">
+        <div className={style.tasks}>
             {tasksElements}
         </div>
     );

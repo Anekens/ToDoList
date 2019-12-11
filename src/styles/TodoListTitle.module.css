@@ -1,0 +1,17 @@
+.container {
+    display: flex;
+  }
+
+
+.title {
+    font-size: 2em;
+}
+
+.todoListTitle input {
+    width: 200px;
+    height: 50px;
+    border: none;
+}
+input {
+    font-size: 2em;
+}

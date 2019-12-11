@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from 'react';
-import '../App.css';
+import style from '../styles/TodoList.module.css';
 import TodoListTasks from "./TodoListTasks";
-import TodoListFooter from "./TodoListFooter";
+import TodoListFilter from "./TodoListFilter";
 import TodoListTitle from "./TodoListTitle";
-import AddNewItemForm from "./AddNewItemForm";
 import {connect} from "react-redux";
 import {addTaskTC, deleteTaskTC, deleteTodolistTC, setTasksTC, updateTaskTC, updateTodolistTC}
     from "../redux/reducer";
+import AddDateForm from "./AddDateForm";
+import AddNewItemForm from "./AddNewItemForm";
+
 
 export const TodoList = (props) => {
 
@@ -68,16 +70,17 @@ export const TodoList = (props) => {
     const {tasks = []} = props;
 
     return (
-        <div className="todoList">
-            <div className="todoList-header">
+        <div className={style.todoList}>
+            <div className={style.todoListHeader}>
                 <TodoListTitle title={props.title}
                                onDelete={deleteTodolist}
                                changeTodolistTitle={changeTodolistTitle}
-                               id={props.id}
-                               addedDate={props.addedDate}/>
+                               id={props.id}/>
                 <AddNewItemForm addItem={addTask}
                                 placeholder={'Add new task'}/>
+                <AddDateForm addedDate={props.addedDate}/>
             </div>
+            <TodoListFilter changeFilter={changeFilter} filterValue={filterValue}/>
             <TodoListTasks changeStatus={changeStatus}
                            changeTitle={changeTitle}
                            deleteTask={deleteTask}
@@ -96,7 +99,7 @@ export const TodoList = (props) => {
                                    return t.completed === true;
                                }
                            })}/>
-            <TodoListFooter changeFilter={changeFilter} filterValue={filterValue}/>
+
         </div>
     );
 };

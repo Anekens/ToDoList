@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './App.css';
+import style from './App.module.css';
 import TodoList from "./components/TodoList";
 import AddNewItemForm from "./components/AddNewItemForm";
 import {connect} from "react-redux";
@@ -28,16 +28,16 @@ export const App = (props) => {
             addedDate={tl.addedDate}/>);
     return (
         <>
-            <div className={'header'}>
+            <div className={style.header}>
                 <div>
                     <AddNewItemForm addItem={addTodoList}
                                     placeholder={'Add new to do list'}/>
                 </div>
                 <div>
-                    <span className={'title'}>to do list app</span>
+                    <span className={style.title}>to do list app</span>
                 </div>
             </div>
-            <div className="App">
+            <div className={style.App}>
                 {todolists}
             </div>
         </>

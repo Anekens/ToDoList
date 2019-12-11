@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../App.css';
+import style from '../styles/TodoListTask.module.css';
 
 
 export const TaskText = (props) => {
@@ -26,18 +26,20 @@ export const TaskText = (props) => {
 
 
     return (
-        <div className={""}>
-            <span className={'heading'}>{props.taskTitle}:&nbsp;</span>
+        <div className={style.textContainer}>
+            <span className={style.heading}>{props.taskTitle}:&nbsp;</span>
             {
                 editMode
-                    ? <input onBlur={deactivateEditMode}
+                    ? <input className={style.inp}
+                        onBlur={deactivateEditMode}
                              onChange={onTitleChanged}
                              autoFocus={true}
                              value={newTitle}
                              onKeyPress={onKeyPress}
                              placeholder={props.placeholder}/>
                     : <span onClick={activateEditMode}
-                            placeholder={props.placeholder}>{!props.title ? 'enter task' : props.title}.&nbsp;</span>
+                            placeholder={props.placeholder}>
+                        {props.title ? props.title : props.placeholder}.&nbsp;</span>
             }
         </div>
     );

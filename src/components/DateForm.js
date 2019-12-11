@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import '../App.css';
+import style from '../styles/TodoListTask.module.css';
 
 
 export const DateForm = (props) => {
@@ -29,11 +29,12 @@ export const DateForm = (props) => {
     let value = new Date(startValue);
 
     return (
-        <div className={""}>
-            <span className={'heading'}>{props.title}:&nbsp;</span>
+        <div className={style.textContainer}>
+            <span className={style.heading}>{props.title}:&nbsp;</span>
             {
                 editMode
-                    ? <input type="date"
+                    ? <input className={style.inpDate}
+                             type="date"
                              value={dateFormat(value, "yyyy-mm-dd")}
                              min={dateFormat(min, "yyyy-mm-dd")} max="2021-12-31"
                              autoFocus={true}

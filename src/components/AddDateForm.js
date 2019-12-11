@@ -1,5 +1,5 @@
 import React from 'react';
-import '../App.css';
+import style from '../styles/TodoListTask.module.css';
 
 export const AddDateForm = (props) => {
 
@@ -7,8 +7,8 @@ export const AddDateForm = (props) => {
     let now = new Date(props.addedDate);
 
     return (
-        <div className={''}>
-                <span className={'heading'}>
+        <div className={style.textContainer}>
+                <span className={style.heading}>
                     Added date:&nbsp;
                 </span>{dateFormat(now, "H:MM dd-mm-yyyy")}.&nbsp;
         </div>

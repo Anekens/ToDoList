@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
-import '../App.css';
-import AddDateForm from "./AddDateForm";
+import style from '../styles/TodoListTitle.module.css';
+import {IconButton} from '@material-ui/core';
+import DeleteIcon from '@material-ui/icons/Delete';
+
 
 export const TodoListTitle = (props) => {
     const [editMode, setEditMode] = useState(false);
@@ -25,8 +27,8 @@ export const TodoListTitle = (props) => {
     };
 
     return (
-        <div>
-            <h3 className="todoList-header__title">
+        <div className={style.container}>
+            <div className={style.todoListTitle}>
                 {editMode
                     ? <input onBlur={deactivateEditMode}
                              onChange={(e) => {
@@ -34,13 +36,18 @@ export const TodoListTitle = (props) => {
                              }}
                              autoFocus={true}
                              value={newTitle}
-                             onKeyPress={onKeyPress}/>
-                    : <span onClick={activateEditMode}>
+                             onKeyPress={onKeyPress}
+                             className={style.input}/>
+                    : <span onClick={activateEditMode}
+                            className={style.title}>
                     {props.title} &nbsp;
             </span>}
-                <button onClick={props.onDelete}>X</button>
-            </h3>
-            <AddDateForm addedDate={props.addedDate}/>
+            </div>
+            <div>
+                <IconButton aria-label="delete" onClick={props.onDelete}>
+                    <DeleteIcon color="primary"/>
+                </IconButton>
+            </div>
         </div>
     );
 };
