@@ -1,7 +1,8 @@
 .task, .taskDone {
     display: flex;
     flex-direction: column;
-    font-size: 1.3em;
+    font-size: 1.2em;
+
 }
 
 .taskDone {
@@ -23,6 +24,7 @@
 
 .textContainer {
     margin-right: 50px;
+
 }
 
 .inp {
