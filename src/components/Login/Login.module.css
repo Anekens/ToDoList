@@ -1,0 +1,10 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction:column;
+    margin: 0;
+    padding-top: 100px;
+    color: blue;
+    font-size: 1.5em;
+}

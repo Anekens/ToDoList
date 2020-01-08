@@ -5,7 +5,7 @@ import TodoListFilter from "./TodoListFilter";
 import TodoListTitle from "./TodoListTitle";
 import {connect} from "react-redux";
 import {addTaskTC, deleteTaskTC, deleteTodolistTC, setTasksTC, updateTaskTC, updateTodolistTC}
-    from "../redux/reducer";
+    from "../redux/todo-reducer";
 import AddDateForm from "./AddDateForm";
 import AddNewItemForm from "./AddNewItemForm";
 
@@ -77,7 +77,8 @@ export const TodoList = (props) => {
                                changeTodolistTitle={changeTodolistTitle}
                                id={props.id}/>
                 <AddNewItemForm addItem={addTask}
-                                placeholder={'Add new task'}/>
+                                placeholder={'Add new task'}
+                                labelInput={"labelInputForTask"}/>
                 <AddDateForm addedDate={props.addedDate}/>
             </div>
             <TodoListFilter changeFilter={changeFilter} filterValue={filterValue}/>

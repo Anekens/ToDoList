@@ -13,7 +13,7 @@ const initialState = {
     "todolists": []
 };
 
-const reducer = (state = initialState, action) => {
+const todoReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_TASKS:
             return {
@@ -196,7 +196,7 @@ export const setTasksTC = (todolistId) => {
 export const updateTaskTC = (taskId, obj, todolistId) => {
     return (dispatch, getState) => {
         getState()
-            .todolists.find(tl => tl.id === todolistId)
+            .todo.todolists.find(tl => tl.id === todolistId)
             .tasks.forEach(t => {
 
             if (t.id === taskId) {
@@ -211,7 +211,7 @@ export const updateTaskTC = (taskId, obj, todolistId) => {
 export const updateTodolistTC = (todolistId, newTitle) => {
     return (dispatch, getState) => {
         getState()
-            .todolists.forEach(tl => {
+            .todo.todolists.forEach(tl => {
             if (tl.id === todolistId) {
                 api.updateTitleTodolist(tl.id, newTitle).then((res) => {
                                         if (res.data.resultCode === 0) {
@@ -233,4 +233,4 @@ export const addTodolistTC = (title) => {
 };
 
 
-export default reducer;
+export default todoReducer;

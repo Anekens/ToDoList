@@ -13,7 +13,7 @@ export const AddNewItemForm = (props) => {
     const onAddItemClick = () => {
         setNewTitle(title);
         if (title === "") {
-            debugger
+
             setError(true);
         } else {
             setError(false);
@@ -43,8 +43,8 @@ export const AddNewItemForm = (props) => {
                        onChange={onTitleChanged}
                        onKeyPress={onKeyPress}
                        value={title}
-                       id={"labelInput"}/>
-                <label htmlFor={"labelInput"}>{props.placeholder}</label>
+                       id={props.labelInput}/>
+                <label htmlFor={props.labelInput}>{props.placeholder}</label>
             </div>
             <div className={style.containerBtn}>
                 <Fab color="primary" size="small" aria-label="add" onClick={onAddItemClick}>

@@ -10,7 +10,7 @@ export const AddDateForm = (props) => {
         <div className={style.textContainer}>
                 <span className={style.heading}>
                     Added date:&nbsp;
-                </span>{dateFormat(now, "H:MM dd-mm-yyyy")}.&nbsp;
+                </span>{dateFormat(now, "H:MM / dd-mm-yyyy")}.&nbsp;
         </div>
     );
 
