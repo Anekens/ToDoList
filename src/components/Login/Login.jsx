@@ -1,12 +1,19 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import LoginReduxForm from "./LoginForm";
 import {connect} from "react-redux";
-import {login} from "../../redux/auth-reducer";
-import {Redirect} from "react-router-dom";
+import {getAuthUserData, login} from "../../redux/auth-reducer";
+import {Redirect, withRouter} from "react-router-dom";
 import s from './Login.module.css'
-
+import {compose} from "redux";
 
 const Login = (props) => {
+    useEffect(() => {
+        const fetchData = async () => {
+            await props.getAuthUserData();
+        };
+        fetchData();
+        fetchData();
+    }, []);
 
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)
@@ -15,8 +22,6 @@ const Login = (props) => {
     if (props.isAuth) {
         return <Redirect to={"/todolist"}/>
     }
-
-
     return (
         <div className={s.wrapper}>
             <span>Credentials for testing</span>
@@ -33,4 +38,7 @@ const mapStateToProps = (state) => ({
     captchaUrl: state.auth.captchaUrl
 });
 
-export default connect(mapStateToProps, {login})(Login)
+export default compose(
+    connect(mapStateToProps, {login,getAuthUserData}),
+    withRouter,
+)(Login);

@@ -14,10 +14,8 @@ export const TodolistAPP = (props) => {
         const fetchData = async () => {
             await props.setTodolistsTC();
         };
-
         fetchData();
     }, []);
-
 
 
     const addTodoList = (title) => {
@@ -32,6 +30,8 @@ export const TodolistAPP = (props) => {
             title={tl.title}
             tasks={tl.tasks}
             addedDate={tl.addedDate}/>);
+
+
     return (
         <>
             <div className={style.header}>
@@ -63,7 +63,8 @@ const mapStateToProps = (state) => {
     return {
         todolists: state.todo.todolists,
         login: state.auth.login,
-        isAuth: state.auth.isAuth
+        isAuth: state.auth.isAuth,
+        userId: state.auth.userId,
     }
 };
 
