@@ -78,7 +78,7 @@ export const TodoList = (props) => {
                                id={props.id}/>
                 <AddNewItemForm addItem={addTask}
                                 placeholder={'Add new task'}
-                                labelInput={"labelInputForTask"}/>
+                                labelInput={props.id}/>
                 <AddDateForm addedDate={props.addedDate}/>
             </div>
             <TodoListFilter changeFilter={changeFilter} filterValue={filterValue}/>

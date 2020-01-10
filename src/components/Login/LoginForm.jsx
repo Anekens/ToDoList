@@ -7,7 +7,9 @@ import s from './FormsControls/FormsControls.module.css'
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
+            <span>Email</span>
             {createField("Email", "email", [required], Input)}
+            <span>Password</span>
             {createField("Password", "password", [required], Input,
                 {type: "password"})}
             {createField(null, "rememberMe", [], Input, {type: "checkbox"},

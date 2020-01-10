@@ -38,7 +38,7 @@ export const TodolistAPP = (props) => {
                 <div>
                     <AddNewItemForm addItem={addTodoList}
                                     placeholder={'Add new to do list'}
-                                    labelInput={"labelInput"}/>
+                                    labelInput={props.todolists}/>
                 </div>
                 <div>
                     <span className={style.title}>to do list app</span>

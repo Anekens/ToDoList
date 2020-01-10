@@ -12,7 +12,6 @@ const Login = (props) => {
             await props.getAuthUserData();
         };
         fetchData();
-        fetchData();
     }, []);
 
     const onSubmit = (formData) => {
@@ -39,6 +38,6 @@ const mapStateToProps = (state) => ({
 });
 
 export default compose(
-    connect(mapStateToProps, {login,getAuthUserData}),
+    connect(mapStateToProps, {login, getAuthUserData}),
     withRouter,
 )(Login);
