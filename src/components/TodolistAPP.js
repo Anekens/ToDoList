@@ -38,14 +38,14 @@ export const TodolistAPP = (props) => {
                 <div>
                     <AddNewItemForm addItem={addTodoList}
                                     placeholder={'Add new to do list'}
-                                    labelInput={props.todolists}/>
+                                    labelInput={"labelInput"}/>
                 </div>
                 <div>
                     <span className={style.title}>to do list app</span>
                 </div>
                 <div className={style.banner}>
                     {props.isAuth ? <div className={style.logFrom}>
-                            <h3 className={style.name}>{props.login}</h3>
+                            <span className={style.name}>your login</span>
                             <span className={style.logoutBtn} onClick={() => props.logout()}>Logout</span>
                         </div> :
                         <Redirect to='/login'/>

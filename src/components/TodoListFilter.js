@@ -5,7 +5,7 @@ import Button from "@material-ui/core/Button";
 
 export const TodoListFilter = (props) => {
 
-    const [isHidden, setHiddenMode] = useState(false);
+    const [isHidden, setHiddenMode] = useState(true);
 
     const onAllFilterClick = () => {
         props.changeFilter("All");

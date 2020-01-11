@@ -5,6 +5,7 @@
 
 .title {
     font-size: 1.8em;
+
 }
 
 .todoListTitle input {
@@ -13,5 +14,5 @@
     border: none;
 }
 input {
-    font-size: 2em;
+    font-size: 1.5em;
 }
