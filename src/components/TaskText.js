@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import style from '../styles/TodoListTask.module.css';
+import style from '../App.module.css';
+import Input from "antd/lib/input";
 
 
 export const TaskText = (props) => {
@@ -26,11 +27,10 @@ export const TaskText = (props) => {
 
 
     return (
-        <div className={style.textContainer}>
-            <span className={style.heading}>{props.taskTitle}:&nbsp;</span>
+        <>
             {
                 editMode
-                    ? <input className={style.inp}
+                    ? <Input className={style.inp}
                         onBlur={deactivateEditMode}
                              onChange={onTitleChanged}
                              autoFocus={true}
@@ -41,7 +41,7 @@ export const TaskText = (props) => {
                             placeholder={props.placeholder}>
                         {props.title ? props.title : props.placeholder}.&nbsp;</span>
             }
-        </div>
+        </>
     );
 };
 

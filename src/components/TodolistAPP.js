@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, { useEffect} from 'react';
 import style from '../App.module.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./AddNewItemForm";
@@ -7,6 +7,9 @@ import {addTodolistTC, setTodolistsTC} from "../redux/todo-reducer";
 import {getAuthUserData, logout} from "../redux/auth-reducer";
 import {Redirect, withRouter} from "react-router-dom";
 import {compose} from "redux";
+import {Icon} from "antd";
+import 'antd/dist/antd.css'
+
 
 export const TodolistAPP = (props) => {
 
@@ -35,26 +38,29 @@ export const TodolistAPP = (props) => {
     return (
         <>
             <div className={style.header}>
-                <div>
+                <div className={style.form}>
                     <AddNewItemForm addItem={addTodoList}
                                     placeholder={'Add new to do list'}
                                     labelInput={"labelInput"}/>
                 </div>
-                <div>
-                    <span className={style.title}>to do list app</span>
-                </div>
-                <div className={style.banner}>
-                    {props.isAuth ? <div className={style.logFrom}>
-                            <span className={style.name}>your login</span>
-                            <span className={style.logoutBtn} onClick={() => props.logout()}>Logout</span>
-                        </div> :
-                        <Redirect to='/login'/>
+                <div className={style.logout}>
+                    {props.isAuth
+                        ? <Icon type="logout"
+                                style={{
+                                    color: '#1890ff',
+                                    fontSize: '24px'
+                                }}
+
+                                onClick={() => props.logout()}/>
+                        : <Redirect to='/login'/>
                     }
                 </div>
             </div>
             <div className={style.App}>
                 {todolists}
+
             </div>
+
         </>
     );
 };

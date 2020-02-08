@@ -26,7 +26,6 @@ const Login = (props) => {
             <span>Credentials for testing</span>
             <span>Email: <b>p.milenkii@gmail.com</b></span>
             <span>Password: <b>test</b></span>
-            <h2>LOGIN</h2>
             <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
         </div>
     )

@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import style from '../styles/TodoList.module.css';
+import style from '../App.module.css';
 import TodoListTasks from "./TodoListTasks";
 import TodoListFilter from "./TodoListFilter";
 import TodoListTitle from "./TodoListTitle";
@@ -79,27 +79,29 @@ export const TodoList = (props) => {
                 <AddNewItemForm addItem={addTask}
                                 placeholder={'Add new task'}
                                 labelInput={props.id}/>
+                <TodoListFilter changeFilter={changeFilter} filterValue={filterValue}/>
                 <AddDateForm addedDate={props.addedDate}/>
             </div>
-            <TodoListFilter changeFilter={changeFilter} filterValue={filterValue}/>
-            <TodoListTasks changeStatus={changeStatus}
-                           changeTitle={changeTitle}
-                           deleteTask={deleteTask}
-                           changePriority={changePriority}
-                           changeDescription={changeDescription}
-                           changeStartDate={changeStartDate}
-                           changeDeadline={changeDeadline}
-                           tasks={tasks.filter(t => {
-                               if (filterValue === "All") {
-                                   return true;
-                               }
-                               if (filterValue === "Active") {
-                                   return t.completed === false;
-                               }
-                               if (filterValue === "Completed") {
-                                   return t.completed === true;
-                               }
-                           })}/>
+
+
+                <TodoListTasks changeStatus={changeStatus}
+                               changeTitle={changeTitle}
+                               deleteTask={deleteTask}
+                               changePriority={changePriority}
+                               changeDescription={changeDescription}
+                               changeStartDate={changeStartDate}
+                               changeDeadline={changeDeadline}
+                               tasks={tasks.filter(t => {
+                                   if (filterValue === "All") {
+                                       return true;
+                                   }
+                                   if (filterValue === "Active") {
+                                       return t.completed === false;
+                                   }
+                                   if (filterValue === "Completed") {
+                                       return t.completed === true;
+                                   }
+                               })}/>
 
         </div>
     );

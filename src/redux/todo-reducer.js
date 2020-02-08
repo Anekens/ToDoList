@@ -31,7 +31,7 @@ const todoReducer = (state = initialState, action) => {
             return {
                 ...state,
                 todolists: action.todolists.map(tl => {
-                    return {...tl, tasks: [] }
+                    return {...tl, tasks: []}
                 })
             };
         case ADD_TODOLIST:
@@ -102,9 +102,10 @@ const todoReducer = (state = initialState, action) => {
                         return tl
                     }
                 })
-            }
+            };
+        default:
+            return state;
     }
-    return state;
 };
 
 const updateTaskAC = (taskId, obj, todolistId) => {
@@ -214,7 +215,7 @@ export const updateTodolistTC = (todolistId, newTitle) => {
             .todo.todolists.forEach(tl => {
             if (tl.id === todolistId) {
                 api.updateTitleTodolist(tl.id, newTitle).then((res) => {
-                                        if (res.data.resultCode === 0) {
+                    if (res.data.resultCode === 0) {
                         dispatch(updateTodolistAC(todolistId, newTitle))
                     }
                 })

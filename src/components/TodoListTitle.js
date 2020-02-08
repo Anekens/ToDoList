@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import style from '../styles/TodoListTitle.module.css';
-import {IconButton} from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import style from '../App.module.css'
+import Input from "antd/lib/input";
+import Icon from "antd/lib/icon";
 
 
 export const TodoListTitle = (props) => {
@@ -27,27 +27,25 @@ export const TodoListTitle = (props) => {
     };
 
     return (
-        <div className={style.container}>
-            <div className={style.todoListTitle}>
-                {editMode
-                    ? <input onBlur={deactivateEditMode}
-                             onChange={(e) => {
-                                 onTitleChanged(e)
-                             }}
-                             autoFocus={true}
-                             value={newTitle}
-                             onKeyPress={onKeyPress}
-                             className={style.input}/>
-                    : <span onClick={activateEditMode}
-                            className={style.title}>
-                    {props.title} &nbsp;
-            </span>}
-            </div>
-            <div>
-                <IconButton aria-label="delete" onClick={props.onDelete}>
-                    <DeleteIcon color="primary"/>
-                </IconButton>
-            </div>
+        <div className={style.todoTitle}>
+            {editMode ? ""
+                : <Icon type="delete" onClick={props.onDelete}/>}
+            {editMode
+                ? <Input onBlur={deactivateEditMode}
+                         onChange={(e) => {
+                             onTitleChanged(e)
+                         }}
+                         autoFocus={true}
+                         value={newTitle}
+                         onKeyPress={onKeyPress}/>
+                : <span onClick={activateEditMode}
+                        style={{
+                            fontSize: '1.6em',
+                        }}>
+                    {props.title} &nbsp;</span>
+            }
+
+
         </div>
     );
 };

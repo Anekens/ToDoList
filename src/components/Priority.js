@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import style from '../styles/TodoListTask.module.css';
+import style from '../App.module.css';
 
 export const Priority = (props) => {
     const [editMode, setEditMode] = useState(false);
@@ -45,26 +45,26 @@ export const Priority = (props) => {
 
     let select = props.priority;
     return (
-        <div className={style.textContainer}>
-            <span className={style.heading}>Priority: </span>
+        <>
+
             {
                 editMode
-                    ? <select className={style.select}
-                        autoFocus={true}
-                              onKeyDown={onKeyPress}
-                              onChange={onPriorityChanged}
-                              onBlur={deactivateEditMode}>
+                    ? < select className={style.select}
+                             autoFocus={true}
+                             onKeyDown={onKeyPress}
+                             onChange={onPriorityChanged}
+                             onBlur={deactivateEditMode}>
                         <option selected={select === 0} value="0">Low</option>
                         <option selected={select === 1} value="1">Middle</option>
                         <option selected={select === 2} value="2">High</option>
                         <option selected={select === 3} value="3">Urgently</option>
                         <option selected={select === 4} value="4">Later</option>
                     </select>
-                    : <span onClick={activateEditMode}>{priorityTitle}</span>
-            }.&nbsp;
-        </div>
-    );
-};
+                : <span onClick={activateEditMode}>{priorityTitle}</span>
+                }.&nbsp;
+                </>
+                );
+                };
 
-export default Priority;
+                export default Priority;
 

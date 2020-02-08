@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import style from '../styles/TodoListTask.module.css';
+import style from '../App.module.css';
 
 
 export const DateForm = (props) => {
@@ -29,8 +29,8 @@ export const DateForm = (props) => {
     let value = new Date(startValue);
 
     return (
-        <div className={style.textContainer}>
-            <span className={style.heading}>{props.title}:&nbsp;</span>
+        <>
+
             {
                 editMode
                     ? <input className={style.inpDate}
@@ -43,7 +43,7 @@ export const DateForm = (props) => {
                     : <span onClick={activateEditMode}>
                         {setDate}.&nbsp;</span>
             }
-        </div>
+        </>
     );
 };
 

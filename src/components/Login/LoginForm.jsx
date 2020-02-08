@@ -1,29 +1,22 @@
 import React from 'react'
-import { reduxForm} from "redux-form";
-import {createField, Input} from "./FormsControls/FormsControls";
-import {required} from "./utils/validator";
+import {reduxForm} from "redux-form";
+import {createField, InputType} from "./FormsControls/FormsControls";
 import s from './FormsControls/FormsControls.module.css'
+
 
 const LoginForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <span>Email</span>
-            {createField("Email", "email", [required], Input)}
+            {createField("Email", "email", [], InputType)}
             <span>Password</span>
-            {createField("Password", "password", [required], Input,
+            {createField("Password", "password", [], InputType,
                 {type: "password"})}
-            {createField(null, "rememberMe", [], Input, {type: "checkbox"},
-                "remember me")}
-
-            {props.captchaUrl && <img src={props.captchaUrl} alt="captcha"/>}
-            {props.captchaUrl && createField("Symbols from image", "captcha",
-                [required], Input)}
-
             {props.error && <div className={s.formSummaryError}>
                 {props.error}
             </div>
             }
-                <button>Login</button>
+            <button>Login</button>
         </form>
     )
 };

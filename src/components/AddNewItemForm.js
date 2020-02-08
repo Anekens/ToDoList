@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
-import style from '../styles/AddNewItemForm.module.css';
-import Fab from "@material-ui/core/Fab";
-import AddIcon from '@material-ui/icons/Add'
+import style from '../App.module.css';
+import Input from "antd/lib/input";
+import {Button} from "antd";
 
 
 export const AddNewItemForm = (props) => {
@@ -34,24 +34,27 @@ export const AddNewItemForm = (props) => {
         }
     };
 
-    let classNameForInput = error ? style.error : "";
+
+
+    let inputError = error ? {backgroundColor : 'red', opacity:'0.7'} : {};
     return (
-        <div className={style.container}>
-            <div className={style.newForm}>
-                <input className={classNameForInput}
-                       type="text"
+        <div className={style.addNewForm}>
+            <div className={style.inputAdd}>
+                <Input placeholder={props.placeholder}
                        onChange={onTitleChanged}
                        onKeyPress={onKeyPress}
                        value={title}
-                       id={props.labelInput}/>
-                <label htmlFor={props.labelInput}>{props.placeholder}</label>
+                       id={props.labelInput}
+                       style={inputError}/>
             </div>
-            <div className={style.containerBtn}>
-                <Fab color="primary" size="small" aria-label="add" onClick={onAddItemClick}>
-                    <AddIcon/>
-                </Fab>
-            </div>
+            <div className={style.btnAdd}>
+                <Button type="primary"
+                        onClick={onAddItemClick}
+                        size={'small'}>
+                    Add
+                </Button>
 
+            </div>
         </div>
     );
 };

@@ -38,10 +38,10 @@ export const TodoListTask = (props) => {
                     </td>
                     <td style={{width:'40%'}}>
                         <TaskText
-                            title={props.task.description}
-                            changeText={props.changeDescription}
-                            id={props.task.id}
-                            placeholder={'set description'}/>
+                                  title={props.task.description}
+                                  changeText={props.changeDescription}
+                                  id={props.task.id}
+                                  placeholder={'set description'}/>
                     </td>
                     <td style={{width:'8%'}}>
                         <Priority priority={props.task.priority}
