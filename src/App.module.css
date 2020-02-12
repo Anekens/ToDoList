@@ -104,12 +104,6 @@ td, th {
 }
 
 
-.task, .taskDone {
-    display: flex;
-    flex-direction: row;
-    font-size: 1.0em;
-}
-
 .taskDone {
     opacity: 0.5;
 }
@@ -175,16 +169,19 @@ td, th {
 (min-device-width: 768px) and (max-device-width: 1024px) {
     table, thead, tbody, th, td, tr {
         display: block;
+        width: 100%;
     }
 
     thead tr {
         position: absolute;
         top: -9999px;
         left: -9999px;
+
     }
 
     tr {
         border: 1px solid #ccc;
+
     }
 
     td {
@@ -192,6 +189,7 @@ td, th {
         border-bottom: 1px solid #eee;
         position: relative;
         padding-left: 50%;
+        width: 100%!important;
     }
 
     td:before {

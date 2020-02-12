@@ -33,8 +33,9 @@ export const TodoListTasks = (props) => {
                     <th style={{width: '2%'}}><Icon type="close"/></th>
                 </tr>
                 </thead>
+                {tasksElements}
             </table>
-            {tasksElements}
+
         </div>
     );
 };
