@@ -1,4 +1,4 @@
-import React, { useEffect} from 'react';
+import React, {useEffect} from 'react';
 import style from '../App.module.css';
 import TodoList from "./TodoList";
 import AddNewItemForm from "./AddNewItemForm";
@@ -14,11 +14,12 @@ import 'antd/dist/antd.css'
 export const TodolistAPP = (props) => {
 
     useEffect(() => {
-        const fetchData = async () => {
-            await props.setTodolistsTC();
-        };
-        fetchData();
-    }, []);
+        try {
+            props.setTodolistsTC();
+        } catch (e) {
+            console.log(e)
+        }
+    }, [props.setTodolistsTC]);
 
 
     const addTodoList = (title) => {
@@ -52,7 +53,7 @@ export const TodolistAPP = (props) => {
                                 }}
 
                                 onClick={() => props.logout()}/>
-                        : <Redirect to='/login'/>
+                        : <Redirect to={'/login'}/>
                     }
                 </div>
             </div>
@@ -73,7 +74,6 @@ const mapStateToProps = (state) => {
         userId: state.auth.userId,
     }
 };
-
 
 export default compose(
     connect(mapStateToProps, {

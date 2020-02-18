@@ -1,4 +1,4 @@
-To do list APP.
+Demo: https://pavelmilenki.github.io/ToDoList
 
 **Stack:**
 
@@ -9,4 +9,3 @@ To do list APP.
 * Hooks
 * Axios
 * Dateformat
-* Material-ui

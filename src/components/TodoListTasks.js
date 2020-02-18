@@ -3,6 +3,7 @@ import style from '../App.module.css';
 import TodoListTask from "./TodoListTask";
 import {Icon} from "antd";
 
+const uuidv1 = require('uuid/v1');
 
 export const TodoListTasks = (props) => {
     const tasksElements = props.tasks.map(task => {
@@ -14,7 +15,7 @@ export const TodoListTasks = (props) => {
                                  changeDescription={props.changeDescription}
                                  changeStartDate={props.changeStartDate}
                                  changeDeadline={props.changeDeadline}
-                                 key={props.tasks.id}/>
+                                 key={uuidv1()}/>
 
         })
     ;

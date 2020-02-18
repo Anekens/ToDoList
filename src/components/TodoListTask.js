@@ -20,7 +20,7 @@ export const TodoListTask = (props) => {
     const classForTaskChecked = props.task.completed ? style.taskDone : '';
 
     return (
-        <tbody>
+        <tbody >
         <tr className={classForTaskChecked}>
             <td style={{width: '2%'}}>
                 <Checkbox checked={props.task.completed === true} onChange={onIsDoneChanged}/>

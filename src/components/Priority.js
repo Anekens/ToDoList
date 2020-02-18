@@ -41,6 +41,8 @@ export const Priority = (props) => {
         case 4:
             priorityTitle = "Later";
             break;
+        default:
+            return 1
     }
 
     let select = props.priority;

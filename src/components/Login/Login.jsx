@@ -12,7 +12,7 @@ const Login = (props) => {
             await props.getAuthUserData();
         };
         fetchData();
-    }, []);
+    }, [props]);
 
     const onSubmit = (formData) => {
         props.login(formData.email, formData.password, formData.rememberMe, formData.captcha)

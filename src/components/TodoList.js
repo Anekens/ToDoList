@@ -84,24 +84,24 @@ export const TodoList = (props) => {
             </div>
 
 
-                <TodoListTasks changeStatus={changeStatus}
-                               changeTitle={changeTitle}
-                               deleteTask={deleteTask}
-                               changePriority={changePriority}
-                               changeDescription={changeDescription}
-                               changeStartDate={changeStartDate}
-                               changeDeadline={changeDeadline}
-                               tasks={tasks.filter(t => {
-                                   if (filterValue === "All") {
-                                       return true;
-                                   }
-                                   if (filterValue === "Active") {
-                                       return t.completed === false;
-                                   }
-                                   if (filterValue === "Completed") {
-                                       return t.completed === true;
-                                   }
-                               })}/>
+            <TodoListTasks changeStatus={changeStatus}
+                           changeTitle={changeTitle}
+                           deleteTask={deleteTask}
+                           changePriority={changePriority}
+                           changeDescription={changeDescription}
+                           changeStartDate={changeStartDate}
+                           changeDeadline={changeDeadline}
+                           tasks={tasks.filter(t => {
+                               if (filterValue === "All") {
+                                   return true;
+                               }
+                               if (filterValue === "Active") {
+                                   return t.completed === false;
+                               }
+                               if (filterValue === "Completed") {
+                                   return t.completed === true;
+                               }
+                           })}/>
 
         </div>
     );
