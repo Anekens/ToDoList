@@ -25,8 +25,8 @@ export const TodoListTasks = (props) => {
                 <thead>
                 <tr>
                     <th style={{width: '2%'}}><Icon type="check"/></th>
-                    <th style={{width: '10%'}}>Added date</th>
-                    <th style={{width: '22%'}}>Title</th>
+                    <th style={{width: '12%'}}>Added date</th>
+                    <th style={{width: '20%'}}>Title</th>
                     <th style={{width: '40%'}}>Description</th>
                     <th style={{width: '8%'}}>Priority</th>
                     <th style={{width: '8%'}}>Start date</th>

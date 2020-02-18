@@ -25,10 +25,10 @@ export const TodoListTask = (props) => {
             <td style={{width: '2%'}}>
                 <Checkbox checked={props.task.completed === true} onChange={onIsDoneChanged}/>
             </td>
-            <td style={{width: '10%'}}>
+            <td style={{width: '12%'}}>
                 <AddDateForm addedDate={props.task.addedDate}/>
             </td>
-            <td style={{width: '22%'}}>
+            <td style={{width: '20%'}}>
                 <TaskText title={props.task.title}
                           changeText={props.changeTitle}
                           id={props.task.id}
