@@ -187,8 +187,7 @@ td, th {
     .todoListHeader {
         flex-direction: column;
         align-items: center;
-        height: 120px;
-
+        height: 128px;
     }
 
     .todoTitle {

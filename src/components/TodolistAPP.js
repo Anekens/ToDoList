@@ -16,7 +16,6 @@ export const TodolistAPP = (props) => {
         props.setTodolistsTC();
     }, []);
 
-
     const addTodoList = (title) => {
         props.addTodolistTC(title);
     };
@@ -30,7 +29,6 @@ export const TodolistAPP = (props) => {
             tasks={tl.tasks}
             addedDate={tl.addedDate}/>);
 
-
     return (
         <>
             <div className={style.header}>
@@ -41,7 +39,6 @@ export const TodolistAPP = (props) => {
                 </div>
                 <div className={style.logout}>
                     {props.isAuth
-
                         ? <Icon type="logout"
                                 style={{
                                     color: '#1890ff',
