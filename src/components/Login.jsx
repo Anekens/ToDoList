@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react'
-import LoginReduxForm from "./LoginForm";
 import {connect} from "react-redux";
-import {getAuthUserData, login} from "../../redux/auth-reducer";
+import {getAuthUserData, login} from "../redux/auth-reducer";
 import {Redirect, withRouter} from "react-router-dom";
-import s from './Login.module.css'
+import s from '../App.module.css'
 import {compose} from "redux";
+import LoginForm from "./LoginForm";
 
 const Login = (props) => {
+
     useEffect(() => {
         const fetchData = async () => {
             await props.getAuthUserData();
@@ -26,14 +27,13 @@ const Login = (props) => {
             <span>Credentials for testing</span>
             <span>Email: <b>p.milenkii@gmail.com</b></span>
             <span>Password: <b>test</b></span>
-            <LoginReduxForm onSubmit={onSubmit} captchaUrl={props.captchaUrl}/>
+            <LoginForm onSubmit={onSubmit}/>
         </div>
     )
 };
 
 const mapStateToProps = (state) => ({
-    isAuth: state.auth.isAuth,
-    captchaUrl: state.auth.captchaUrl
+    isAuth: state.auth.isAuth
 });
 
 export default compose(

@@ -10,16 +10,11 @@ import {compose} from "redux";
 import {Icon} from "antd";
 import 'antd/dist/antd.css'
 
-
 export const TodolistAPP = (props) => {
 
     useEffect(() => {
-        try {
-            props.setTodolistsTC();
-        } catch (e) {
-            console.log(e)
-        }
-    }, [props.setTodolistsTC]);
+        props.setTodolistsTC();
+    }, []);
 
 
     const addTodoList = (title) => {
@@ -46,12 +41,12 @@ export const TodolistAPP = (props) => {
                 </div>
                 <div className={style.logout}>
                     {props.isAuth
+
                         ? <Icon type="logout"
                                 style={{
                                     color: '#1890ff',
                                     fontSize: '24px'
                                 }}
-
                                 onClick={() => props.logout()}/>
                         : <Redirect to={'/login'}/>
                     }
@@ -59,9 +54,7 @@ export const TodolistAPP = (props) => {
             </div>
             <div className={style.App}>
                 {todolists}
-
             </div>
-
         </>
     );
 };

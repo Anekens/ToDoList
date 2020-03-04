@@ -1,7 +1,7 @@
 import React from 'react';
 import TodolistAPP from "./components/TodolistAPP";
 import {Redirect, Route, Switch, withRouter} from "react-router-dom";
-import Login from "./components/Login/Login";
+import Login from "./components/Login";
 import {initializeApp} from "./redux/app-reducer";
 import {compose} from "redux";
 import {connect} from "react-redux";
