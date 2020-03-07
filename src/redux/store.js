@@ -1,24 +1,17 @@
-import {applyMiddleware, combineReducers, createStore, compose} from "redux";
-import authReducer from "./auth-reducer";
+import {applyMiddleware, combineReducers, createStore} from "redux";
 import thunkMiddleware from "redux-thunk"
 import {reducer as formReducer} from 'redux-form'
-import appReducer from "./app-reducer";
-import todoReducer from "./todo-reducer";
+import {todoReducer} from "./todo-reducer";
+import {authReducer} from "./auth-reducer";
 
 
 const reducers = combineReducers({
-
     auth: authReducer,
     form: formReducer,
-    app: appReducer,
-    todo:todoReducer
+    todo: todoReducer
 });
 
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)
-));
+const store = createStore(reducers, applyMiddleware(thunkMiddleware));
 
 window._store_ = store;
-
 export default store

@@ -45,5 +45,5 @@ export const TaskText = (props) => {
     );
 };
 
-export default TaskText;
+
 

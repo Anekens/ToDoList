@@ -1,13 +1,10 @@
 import React from 'react';
-import TodolistAPP from "./components/TodolistAPP";
-import {Redirect, Route, Switch, withRouter} from "react-router-dom";
-import Login from "./components/Login";
-import {initializeApp} from "./redux/app-reducer";
-import {compose} from "redux";
-import {connect} from "react-redux";
+import {TodolistAPP} from "./components/TodolistAPP";
+import {Redirect, Route, Switch} from "react-router-dom";
+import {Login }from "./components/Login";
+
 
 export const App = () => {
-
     return (
         <div>
             <Switch>
@@ -21,14 +18,5 @@ export const App = () => {
     );
 };
 
-const mapStateToProps = (state) => ({
-    initialized: state.app.initialized
-});
-
-const AppContainer = compose(
-    withRouter,
-    connect(mapStateToProps, {initializeApp}))(App);
-
-export default AppContainer
 
 

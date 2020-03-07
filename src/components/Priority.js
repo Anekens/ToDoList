@@ -67,5 +67,5 @@ export const Priority = (props) => {
     );
 };
 
-export default Priority;
+
 

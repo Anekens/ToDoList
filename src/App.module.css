@@ -136,7 +136,7 @@ td, th {
     display: flex;
     align-items: center;
     flex-direction: column;
-    margin-top: 200px;
+    margin-top: 180px;
     color: #1890ff;
     font-size: 24px;
 }
@@ -164,7 +164,7 @@ td, th {
     margin: 0 0 15px;
     padding: 15px;
     box-sizing: border-box;
-    font-size: 14px;
+    font-size: 20px;
 }
 
 .formRedux button {

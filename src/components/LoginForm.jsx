@@ -4,10 +4,10 @@ import {Field} from "redux-form";
 import s from '../App.module.css'
 
 
-const LoginForm = (props) => {
+const LoginForm = ({handleSubmit}) => {
     return (
         <div className={s.formRedux}>
-            <form onSubmit={props.handleSubmit}>
+            <form onSubmit={handleSubmit}>
                 <label>Email</label>
                 <Field name="email" component="input" type="text"/>
                 <label>Password</label>

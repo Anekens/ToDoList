@@ -30,9 +30,7 @@ export const DateForm = (props) => {
 
     return (
         <>
-
-            {
-                editMode
+            {editMode
                     ? <input className={style.inpDate}
                              type="date"
                              value={dateFormat(value, "yyyy-mm-dd")}
@@ -47,5 +45,5 @@ export const DateForm = (props) => {
     );
 };
 
-export default DateForm;
+
 

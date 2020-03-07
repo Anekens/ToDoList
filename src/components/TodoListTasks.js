@@ -1,6 +1,6 @@
 import React from 'react';
 import style from '../App.module.css';
-import TodoListTask from "./TodoListTask";
+import {TodoListTask} from "./TodoListTask";
 import {Icon} from "antd";
 
 const uuidv1 = require('uuid/v1');
@@ -41,5 +41,5 @@ export const TodoListTasks = (props) => {
     );
 };
 
-export default TodoListTasks;
+
 

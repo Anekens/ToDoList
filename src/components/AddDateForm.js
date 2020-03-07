@@ -14,5 +14,5 @@ export const AddDateForm = (props) => {
 
 };
 
-export default AddDateForm;
+
 

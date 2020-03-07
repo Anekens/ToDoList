@@ -1,41 +1,37 @@
 import React, {useState, useEffect} from 'react';
 import style from '../App.module.css';
-import TodoListTasks from "./TodoListTasks";
-import TodoListFilter from "./TodoListFilter";
-import TodoListTitle from "./TodoListTitle";
-import {connect} from "react-redux";
-import {addTaskTC, deleteTaskTC, deleteTodolistTC, setTasksTC, updateTaskTC, updateTodolistTC}
-    from "../redux/todo-reducer";
-import AddDateForm from "./AddDateForm";
-import AddNewItemForm from "./AddNewItemForm";
+import {TodoListTasks} from "./TodoListTasks";
+import {TodoListFilter} from "./TodoListFilter";
+import {TodoListTitle} from "./TodoListTitle";
+import {useDispatch} from "react-redux";
+import {addTask, deleteTask, deleteTodolist, getTasks, updateTask, updateTodolist} from "../redux/todo-reducer";
+import {AddDateForm} from "./AddDateForm";
+import {AddNewItemForm} from "./AddNewItemForm";
 
 
 export const TodoList = (props) => {
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        const fetchData = async () => {
-            await props.setTasksTC(props.id);
-        };
-        fetchData()
-    }, [props.id]);
+        dispatch(getTasks(props.id));
+    }, [dispatch, props.id]);
 
     const [filterValue, setNewFilterValue] = useState('All');
 
-    const addTask = (newText) => {
-        props.addTaskTC(newText, props.id);
+    const addingTask = (newText) => {
+        dispatch(addTask(newText, props.id));
     };
 
     const changeFilter = (filterValue) => {
-
         setNewFilterValue(filterValue);
     };
 
     const changeTask = (taskId, obj) => {
-        props.updateTaskTC(taskId, obj, props.id);
+        dispatch(updateTask(taskId, obj, props.id));
     };
 
     const changeTodolistTitle = (newTitle) => {
-        props.updateTodolistTC(props.id, newTitle);
+        dispatch(updateTodolist(props.id, newTitle));
     };
 
     const changeStatus = (taskId, completed) => {
@@ -59,12 +55,12 @@ export const TodoList = (props) => {
         changeTask(taskId, {deadline});
     };
 
-    const deleteTodolist = () => {
-        props.deleteTodolistTC(props.id);
+    const deletingTodolist = () => {
+        dispatch(deleteTodolist(props.id));
     };
 
-    const deleteTask = (taskId) => {
-        props.deleteTaskTC(taskId, props.id);
+    const deletingTask = (taskId) => {
+        dispatch(deleteTask(taskId, props.id));
     };
 
     const {tasks = []} = props;
@@ -73,20 +69,18 @@ export const TodoList = (props) => {
         <div className={style.todoList}>
             <div className={style.todoListHeader}>
                 <TodoListTitle title={props.title}
-                               onDelete={deleteTodolist}
+                               onDelete={deletingTodolist}
                                changeTodolistTitle={changeTodolistTitle}
                                id={props.id}/>
-                <AddNewItemForm addItem={addTask}
+                <AddNewItemForm addItem={addingTask}
                                 placeholder={'Add new task'}
                                 labelInput={props.id}/>
                 <TodoListFilter changeFilter={changeFilter} filterValue={filterValue}/>
                 <AddDateForm addedDate={props.addedDate}/>
             </div>
-
-
             <TodoListTasks changeStatus={changeStatus}
                            changeTitle={changeTitle}
-                           deleteTask={deleteTask}
+                           deleteTask={deletingTask}
                            changePriority={changePriority}
                            changeDescription={changeDescription}
                            changeStartDate={changeStartDate}
@@ -107,10 +101,4 @@ export const TodoList = (props) => {
     );
 };
 
-const ConnectedTodoList = connect(null, {
-    deleteTaskTC, deleteTodolistTC, updateTaskTC,
-    setTasksTC, addTaskTC, updateTodolistTC
-})(TodoList);
-
-export default ConnectedTodoList;
 

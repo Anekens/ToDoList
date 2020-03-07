@@ -1,9 +1,9 @@
 import React from 'react';
 import style from '../App.module.css';
-import DateForm from "./DateForm";
-import Priority from "./Priority";
-import TaskText from "./TaskText";
-import AddDateForm from "./AddDateForm";
+import {DateForm} from "./DateForm";
+import {Priority} from "./Priority";
+import {TaskText} from "./TaskText";
+import {AddDateForm} from "./AddDateForm";
 import Icon from "antd/lib/icon";
 import Checkbox from "antd/lib/checkbox";
 
@@ -67,5 +67,5 @@ export const TodoListTask = (props) => {
 
 };
 
-export default TodoListTask;
+
 
