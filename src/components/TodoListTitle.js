@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import style from '../App.module.css'
+import style from '../App.module.scss'
 import Input from "antd/lib/input";
 import Icon from "antd/lib/icon";
 

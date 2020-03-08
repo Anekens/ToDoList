@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import style from '../App.module.css';
+import style from '../App.module.scss';
 import {TodoList} from "./TodoList";
 import {AddNewItemForm} from "./AddNewItemForm";
 import {useDispatch, useSelector} from "react-redux";
@@ -12,7 +12,7 @@ import 'antd/dist/antd.css'
 export const TodolistAPP = () => {
 
     const {success} = useSelector((store) => store.auth);
-    const {todolists = [],loading} = useSelector((store) => store.todo);
+    const {todolists = [], loading} = useSelector((store) => store.todo);
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -31,7 +31,7 @@ export const TodolistAPP = () => {
         addedDate={tl.addedDate}/>);
 
     return (
-        <> <div>{loading && "loading..."}</div>
+        <> {loading && <div className={style.loader}> Loading...</div>}
             <div className={style.header}>
                 <div className={style.form}>
                     <AddNewItemForm addItem={addTodoList}

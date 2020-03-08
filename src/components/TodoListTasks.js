@@ -1,5 +1,5 @@
 import React from 'react';
-import style from '../App.module.css';
+import style from '../App.module.scss';
 import {TodoListTask} from "./TodoListTask";
 import {Icon} from "antd";
 

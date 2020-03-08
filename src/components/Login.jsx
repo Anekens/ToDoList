@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
 
 import {Redirect} from "react-router-dom";
-import s from '../App.module.css'
+import s from '../App.module.scss'
 import LoginForm from "./LoginForm";
 import {useDispatch, useSelector} from "react-redux";
 import {getAuthUserData, login} from "../redux/auth-reducer";

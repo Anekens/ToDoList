@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import style from '../App.module.css';
+import style from '../App.module.scss';
 import {TodoListTasks} from "./TodoListTasks";
 import {TodoListFilter} from "./TodoListFilter";
 import {TodoListTitle} from "./TodoListTitle";

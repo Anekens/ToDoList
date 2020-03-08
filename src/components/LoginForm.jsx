@@ -1,7 +1,7 @@
 import React from 'react'
 import {reduxForm} from "redux-form";
 import {Field} from "redux-form";
-import s from '../App.module.css'
+import s from '../App.module.scss'
 
 
 const LoginForm = ({handleSubmit}) => {
